@@ -1,0 +1,14 @@
+
+# needed for docker (not needed anymore)
+# sudo: required
+
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - docker build -t giacomoratta/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true giacomoratta/docker-react npm run test

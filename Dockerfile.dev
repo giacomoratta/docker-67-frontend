@@ -12,6 +12,7 @@ CMD ["npm", "run", "start"]
 
 # docker build -f Dockerfile.dev .
 
+# ALWAYS RUN with -it
 # docker run -it -p 3000:3000 CONTAINER_ID
 # (-it flag is needed to avoit react app exits immediately or just to be able to exit with ctrl+C. )
 
