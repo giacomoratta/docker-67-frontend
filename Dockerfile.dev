@@ -1,0 +1,22 @@
+FROM node:alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+RUN npm install
+
+# to make this step faster, remove local node_modules
+COPY . .
+
+CMD ["npm", "run", "start"]
+
+# docker build -f Dockerfile.dev .
+
+# docker run -it -p 3000:3000 CONTAINER_ID
+# (-it flag is needed to avoit react app exits immediately or just to be able to exit with ctrl+C. )
+
+# docker run -it -p 3000:3000 -v /app/node_modules -v $(pwd):/app CONTAINER_ID
+# usages of Docker Volume for hot-reloading
+
+# docker run -it CONTAINER_ID npm run test
+# Run tests inside docker container
