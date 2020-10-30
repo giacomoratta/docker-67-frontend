@@ -12,3 +12,21 @@ before_install:
 
 script:
   - docker run -e CI=true giacomoratta/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west-1"
+  app: "docker"
+  env: "Docker-env"
+
+  # travis CI will put a zip here, which has to be deployed
+  # AWS automatically created a S3 bucket
+  bucket_name: "elasticbeanstalk-eu-west-1-478688081822"
+  bucket_path: "docker"
+
+  # branch to be automatically deployed
+  on:
+    branch: master
+
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
